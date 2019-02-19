@@ -12,7 +12,6 @@ class ArrivingTrains extends Component {
         this.fetchAllStations(response => {
             this.setState({ allStations: response });
         });
-        console.log('haetaan all stations')
     }
 
     getStationName = (stationShortCode) => {
@@ -39,12 +38,10 @@ class ArrivingTrains extends Component {
     }
 
     render() {
-        // function to check for duplicate arrival -- return new array. that will be sorted on next line
         const arrivingTrainsInOrder = this.sortDataByScheduledTime(this.props.arrivingTrains.slice(0, 10));
-        console.log('arriving.js', this.props.arrivingTrains);
         return (
             <div>
-                ARRIVING TRAINS:
+                <h3>Saapuvat</h3>
                 <table>
                     <thead>
                         <tr>
@@ -57,7 +54,6 @@ class ArrivingTrains extends Component {
                     {this.state.allStations.length > 0 &&
                         <tbody>
                             {arrivingTrainsInOrder.map((train, index) => {
-                                // console.log('junaa tutkitaa', train)
                                 return <TrainDetailsRow key={index} train={train} allStations={this.state.allStations} station={this.props.station} />
                             })}
                         </tbody>}

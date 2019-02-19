@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import StationSearch from './StationSearch';
 import ArrivingTrains from './ArrivingTrains';
-import Arriving from './Arriving';
 import { StationArrivals } from './ServiceClient';
 
 class App extends Component {
@@ -20,12 +19,14 @@ class App extends Component {
   getStationArrivals = (stationShortCode) => {
     StationArrivals(stationShortCode, response => {
       const arrivingTrains = [];
-      response.data.map(arrivingTrain => {        
+      response.data.map(arrivingTrain => {
         // filterDataNeededOnly returns an array because the same train might stop in the same station twice (f.ex. P in Pasila)
         const possibleDoubleTrain = this.filterDataNeededOnly(arrivingTrain);
         possibleDoubleTrain.map(train => {
           arrivingTrains.push(train);
+          return null;
         });
+        return null;
       })
       this.setState({ arrivingTrains });
     })
@@ -59,12 +60,12 @@ class App extends Component {
         const copyOfTrain = { ...trainDetails };
         trainStops.push(copyOfTrain);
       }
+      return null;
     });
     return trainStops;
   }
 
   render() {
-    console.log('rendering data for station', this.state.arrivingTrains.length)
     return (
       <div>
         <StationSearch changeStation={this.changeStation} />
