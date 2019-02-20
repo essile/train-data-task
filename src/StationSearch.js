@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { AllStations } from './ServiceClient';
 import Autosuggest from 'react-autosuggest';
+import { Button, Row, Col } from 'reactstrap';
 
 export default class StationSearch extends Component {
 
@@ -51,7 +52,13 @@ export default class StationSearch extends Component {
         });
     };
 
+    clearInput = () => {
+        console.log('clear', this.state.searchTerm);
+        this.setState({ searchTerm: '' });
+    }
+
     render() {
+        console.log('render', this.state)
         const { searchTerm, suggestions } = this.state;
 
         const inputProps = {
@@ -59,21 +66,41 @@ export default class StationSearch extends Component {
             value: searchTerm,
             onChange: this.onChange
         };
+        const x = '✖';
 
         return (
+
             <div>
                 <h5>Hae aseman nimellä</h5>
-                <Autosuggest
-                    suggestions={suggestions}
-                    onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-                    onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-                    getSuggestionValue={this.getSuggestionValue}
-                    renderSuggestion={this.renderSuggestion}
-                    inputProps={inputProps}
-                    theme={theme}
-                />
-                <br /><br />
-            </div>
+                <Row>
+                    <Autosuggest
+                        suggestions={suggestions}
+                        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                        getSuggestionValue={this.getSuggestionValue}
+                        renderSuggestion={this.renderSuggestion}
+                        inputProps={inputProps}
+                        theme={theme}
+                    />
+                    <Button className='removeSearchTerm'
+                        style={{
+                            position: 'absolute',
+                            height: '45px',
+                            marginLeft: '343px',
+                            backgroundColor: 'transparent',
+                            borderColor: 'transparent',
+                            color: 'black',
+                            fontSize: '20px',
+                            paddingLeft: '20px',
+                            paddingRight: '20px',
+                            border: 'none',
+                            transition: 'none'
+                        }}
+                        onClick={this.clearInput}>{x}</Button>
+
+                </Row>
+                <br /> <br />
+            </div >
         );
     }
 }
@@ -93,7 +120,8 @@ const theme = {
         borderTopRightRadius: 7,
         borderBottomLeftRadius: 7,
         borderBottomRightRadius: 7,
-        backgroundColor: '#E0F8E0'
+        backgroundColor: '#E0F8E0',
+        marginRight: '-20px'
     },
     inputFocused: {
         outline: 'none'
