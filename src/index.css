@@ -12,3 +12,33 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.table thead th {
+  border-top-color: transparent;
+}
+
+.changedSchedule {
+  color: red
+}
+
+.verticalAlignCenter {
+  line-height: 2.5;
+}
+
+.cancelledTrain {
+  color: darkgray;
+}
+
+.delayedTime {
+  font-size: 13px;
+}
+
+.nonActiveTab {
+  color: green;
+  font-weight: 500;
+}
+
+.navBar {
+    -webkit-box-shadow: 0 8px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.2);
+}

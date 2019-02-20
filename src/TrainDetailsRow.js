@@ -17,25 +17,30 @@ export default class TrainDetailsRow extends Component {
 
     render() {
         const train = this.props.train;
+        const trainClassName = train.cancelled ? 'cancelledTrain' : 'trainDetailsRow';
         return (
-            <tr>
-                <td>
+            <tr className={trainClassName}>
+                <td className='verticalAlignCenter'>
                     {train.commuterLineID ? `Commuter train ${train.commuterLineID}` : `${train.trainType} ${train.trainNumber}`}
                 </td>
-                <td>
+                <td className='verticalAlignCenter'>
                     {this.getStationName(train.departureStation)}
                 </td>
-                <td>
+                <td className='verticalAlignCenter'>
                     {this.getStationName(train.arrivalStation)}
                 </td>
-                <td>
-                    {(train.liveEstimateTime === undefined || train.liveEstimateTime === train.scheduledTime)
-                        ? this.getLocalTime(train.scheduledTime)
-                        : `${this.getLocalTime(train.liveEstimateTime)} (${this.getLocalTime(train.scheduledTime)})`}
-                </td>
-                <td>
-                    {train.cancelled === true ? ' peruttu' : ''}
-                </td>
+                {train.cancelled &&
+                    <td>
+                        <span className='cancelledTrain'>{this.getLocalTime(train.scheduledTime)}</span><br />
+                        <span className='changedSchedule'>Cancelled</span>
+                    </td>}
+                {!train.cancelled &&
+                    <td>
+                        {(train.liveEstimateTime === undefined || train.liveEstimateTime === train.scheduledTime)
+                            ? <span className='verticalAlignCenter'>{this.getLocalTime(train.scheduledTime)}</span>
+                            : <span><span className='changedSchedule'>{this.getLocalTime(train.liveEstimateTime)}</span><br />
+                                <span className='delayedTime'>({this.getLocalTime(train.scheduledTime)})</span></span>}
+                    </td>}
             </tr>
         );
     }

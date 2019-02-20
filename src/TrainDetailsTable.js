@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Table } from 'reactstrap';
 import TrainDetailsRow from './TrainDetailsRow';
 
 class TrainDetailsTable extends Component {
@@ -13,14 +14,14 @@ class TrainDetailsTable extends Component {
         const trainsInOrder = this.sortDataByScheduledTime(this.props.trains.slice(0, 10));
         return (
             <div>
-                {this.props.arrivals ? <h3>Saapuvat</h3> : <h3>Lähtevät</h3>}
-                <table>
+                <br />
+                <Table striped>
                     <thead>
                         <tr>
-                            <td>Juna</td>
-                            <td>Lähtöasema</td>
-                            <td>Pääteasema</td>
-                            {this.props.arrivals ? <td>Saapuu</td> : <td>Lähtee</td>}
+                            <th>Juna</th>
+                            <th>Lähtöasema</th>
+                            <th>Pääteasema</th>
+                            {this.props.arrivals ? <th>Saapuu</th> : <th>Lähtee</th>}
                         </tr>
                     </thead>
                     <tbody>
@@ -33,7 +34,7 @@ class TrainDetailsTable extends Component {
                             />
                         })}
                     </tbody>
-                </table>
+                </Table>
             </div>
         );
     }

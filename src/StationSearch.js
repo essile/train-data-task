@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { AllStations } from './ServiceClient';
 import Autosuggest from 'react-autosuggest';
+import { Button, Row, Col } from 'reactstrap';
 
 export default class StationSearch extends Component {
 
@@ -36,7 +37,6 @@ export default class StationSearch extends Component {
     };
 
     onChange = (event, { newValue }) => {
-        // this.props.station(newValue);
         this.setState({ searchTerm: newValue });
     };
 
@@ -52,27 +52,111 @@ export default class StationSearch extends Component {
         });
     };
 
+    clearInput = () => {
+        console.log('clear', this.state.searchTerm);
+        this.setState({ searchTerm: '' });
+    }
+
     render() {
+        console.log('render', this.state)
         const { searchTerm, suggestions } = this.state;
 
         const inputProps = {
-            placeholder: 'Esim. "Helsinki"',
+            placeholder: `Esim. 'Helsinki'`,
             value: searchTerm,
             onChange: this.onChange
         };
+        const x = '✖';
 
         return (
+
             <div>
-                <h3>Etsi asemaa</h3>
-                <Autosuggest
-                    suggestions={suggestions}
-                    onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-                    onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-                    getSuggestionValue={this.getSuggestionValue}
-                    renderSuggestion={this.renderSuggestion}
-                    inputProps={inputProps}
-                />
-            </div>
+                <h5>Hae aseman nimellä</h5>
+                <Row>
+                    <Autosuggest
+                        suggestions={suggestions}
+                        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                        getSuggestionValue={this.getSuggestionValue}
+                        renderSuggestion={this.renderSuggestion}
+                        inputProps={inputProps}
+                        theme={theme}
+                    />
+                    <Button className='removeSearchTerm'
+                        style={{
+                            position: 'absolute',
+                            height: '45px',
+                            marginLeft: '343px',
+                            backgroundColor: 'transparent',
+                            borderColor: 'transparent',
+                            color: 'black',
+                            fontSize: '20px',
+                            paddingLeft: '20px',
+                            paddingRight: '20px',
+                            border: 'none',
+                            transition: 'none'
+                        }}
+                        onClick={this.clearInput}>{x}</Button>
+
+                </Row>
+                <br /> <br />
+            </div >
         );
+    }
+}
+
+const theme = {
+    container: {
+        position: 'relative'
+    },
+    input: {
+        width: 400,
+        padding: '10px 20px',
+        fontFamily: 'Helvetica, sans-serif',
+        fontWeight: 300,
+        fontSize: 16,
+        border: '1px solid #aaa',
+        borderTopLeftRadius: 7,
+        borderTopRightRadius: 7,
+        borderBottomLeftRadius: 7,
+        borderBottomRightRadius: 7,
+        backgroundColor: '#E0F8E0',
+        marginRight: '-20px'
+    },
+    inputFocused: {
+        outline: 'none'
+    },
+    inputOpen: {
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0,
+    },
+    suggestionsContainer: {
+        display: 'none'
+    },
+    suggestionsContainerOpen: {
+        display: 'block',
+        position: 'absolute',
+        top: 51,
+        width: 400,
+        border: '1px solid #aaa',
+        backgroundColor: '#fff',
+        fontFamily: 'Helvetica, sans-serif',
+        fontWeight: 300,
+        fontSize: 16,
+        borderBottomLeftRadius: 4,
+        borderBottomRightRadius: 4,
+        zIndex: 2
+    },
+    suggestionsList: {
+        margin: 0,
+        padding: 0,
+        listStyleType: 'none',
+    },
+    suggestion: {
+        cursor: 'pointer',
+        padding: '10px 20px'
+    },
+    suggestionHighlighted: {
+        backgroundColor: '#ddd'
     }
 }

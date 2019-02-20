@@ -1,15 +1,32 @@
 import React, { Component } from 'react';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col, Container } from 'reactstrap';
+import classnames from 'classnames';
+
 import StationSearch from './StationSearch';
 import TrainDetailsTable from './TrainDetailsTable';
 import { StationArrivalsAndDepartures, AllStations } from './ServiceClient';
 
 class App extends Component {
 
-  state = {
-    station: '',
-    allStations: [],
-    arrivingTrains: [],
-    departingTrains: [],
+  constructor(props) {
+    super(props);
+
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      activeTab: '1',
+      station: '',
+      allStations: [],
+      arrivingTrains: [],
+      departingTrains: [],
+    };
+  }
+
+  toggle(tab) {
+    if (this.state.activeTab !== tab) {
+      this.setState({
+        activeTab: tab
+      });
+    }
   }
 
   componentDidMount() {
@@ -79,34 +96,64 @@ class App extends Component {
         const copyOfTrain = { ...trainDetails };
         trainStops.push(copyOfTrain);
 
-        return null;
       }
+      return null;
     });
     return trainStops;
   }
 
   render() {
-    console.log(this.state)
+
     return (
-      <div>
+      <Container>
         <StationSearch changeStation={this.changeStation} />
-
-        {this.state.arrivingTrains.length > 0 &&
-          <TrainDetailsTable
-            trains={this.state.arrivingTrains}
-            station={this.state.station}
-            arrivals={true}
-            allStations={this.state.allStations}
-          />}
-
-        {this.state.departingTrains.length > 0 &&
-          <TrainDetailsTable
-            trains={this.state.departingTrains}
-            station={this.state.station}
-            arrivals={false}
-            allStations={this.state.allStations}
-          />}
-      </div>
+        <Nav tabs>
+          <NavItem>
+            <NavLink
+              className={classnames({ active: this.state.activeTab === '1' })}
+              onClick={() => { this.toggle('1'); }}
+            >
+              <span className={this.state.activeTab === '1' ? '' : 'nonActiveTab'}>Saapuvat</span>
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              className={classnames({ active: this.state.activeTab === '2' })}
+              onClick={() => { this.toggle('2'); }}
+            >
+              <span className={this.state.activeTab === '2' ? '' : 'nonActiveTab'}>Lähtevät</span>
+            </NavLink>
+          </NavItem>
+        </Nav>
+        <TabContent activeTab={this.state.activeTab}>
+          <TabPane tabId="1">
+            <Row>
+              <Col sm="12">
+                {this.state.arrivingTrains.length > 0 &&
+                  <TrainDetailsTable
+                    trains={this.state.arrivingTrains}
+                    station={this.state.station}
+                    arrivals={true}
+                    allStations={this.state.allStations}
+                  />}
+              </Col>
+            </Row>
+          </TabPane>
+          <TabPane tabId="2">
+            <Row>
+              <Col sm="12">
+                {this.state.departingTrains.length > 0 &&
+                  <TrainDetailsTable
+                    trains={this.state.departingTrains}
+                    station={this.state.station}
+                    arrivals={false}
+                    allStations={this.state.allStations}
+                  />}
+              </Col>
+            </Row>
+          </TabPane>
+        </TabContent>
+      </Container>
     );
   }
 }
