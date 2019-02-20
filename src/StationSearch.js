@@ -63,7 +63,7 @@ export default class StationSearch extends Component {
 
         return (
             <div>
-                <h3>Etsi asemaa</h3>
+                <h3>Hae aseman nimellä</h3>
                 <Autosuggest
                     suggestions={suggestions}
                     onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}

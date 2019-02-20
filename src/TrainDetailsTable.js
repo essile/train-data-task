@@ -13,7 +13,6 @@ class TrainDetailsTable extends Component {
         const trainsInOrder = this.sortDataByScheduledTime(this.props.trains.slice(0, 10));
         return (
             <div>
-                {this.props.arrivals ? <h3>Saapuvat</h3> : <h3>Lähtevät</h3>}
                 <table>
                     <thead>
                         <tr>
