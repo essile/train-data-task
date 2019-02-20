@@ -4,7 +4,13 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import NavigationBar from './NavigationBar';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+    <div>
+        <NavigationBar />
+        <App />
+    </div>
+    , document.getElementById('root'));
 
 serviceWorker.unregister();
