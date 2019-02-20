@@ -32,3 +32,8 @@ code {
 .delayedTime {
   font-size: 13px;
 }
+
+.nonActiveTab {
+  color: green;
+  font-weight: 500;
+}

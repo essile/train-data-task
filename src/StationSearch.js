@@ -84,7 +84,6 @@ const theme = {
     },
     input: {
         width: 400,
-        // height: 30,
         padding: '10px 20px',
         fontFamily: 'Helvetica, sans-serif',
         fontWeight: 300,
