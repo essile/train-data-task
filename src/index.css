@@ -12,3 +12,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.table thead th {
+  border-top-color: transparent;
+}
+
+.changedSchedule {
+  color: red
+}
+
+.verticalAlignCenter {
+  line-height: 2.5;
+}
+
+.cancelledTrain {
+  color: darkgray;
+}
+
+.delayedTime {
+  font-size: 13px;
+}

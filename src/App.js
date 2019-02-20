@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col, Container } from 'reactstrap';
 import classnames from 'classnames';
 
 import StationSearch from './StationSearch';
@@ -104,7 +104,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <Container>
         <StationSearch changeStation={this.changeStation} />
         <Nav tabs>
           <NavItem>
@@ -152,7 +152,7 @@ class App extends Component {
             </Row>
           </TabPane>
         </TabContent>
-      </div>
+      </Container>
     );
   }
 }
