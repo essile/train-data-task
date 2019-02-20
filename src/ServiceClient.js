@@ -12,15 +12,12 @@ export function AllStations(callback) {
     });
 }
 
-export function StationArrivals(stationShortCode, callback) {
-  console.log('koodi', stationShortCode)
-  Axios.get(API + `/v1/live-trains?arrived_trains=0&arriving_trains=20&departed_trains=0&departing_trains=0&station=${stationShortCode}&include_nonstopping=false`)
+export function StationArrivalsAndDepartures(stationShortCode, callback) {
+  Axios.get(API + `/v1/live-trains?arrived_trains=0&arriving_trains=20&departed_trains=0&departing_trains=20&station=${stationShortCode}&include_nonstopping=false`)
     .then(response => {
-      console.log('toimii, data', response.data)
       callback(response);
     })
     .catch(error => {
-      console.log('ei toimi')
       callback(error);
     });
 }

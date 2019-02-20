@@ -7,6 +7,7 @@ export default class TrainDetailsRow extends Component {
             if (station.stationShortCode === stationShortCode) {
                 return station.stationName;
             }
+            return null;
         });
     }
 
