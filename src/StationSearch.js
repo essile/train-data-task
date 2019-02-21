@@ -53,12 +53,10 @@ export default class StationSearch extends Component {
     };
 
     clearInput = () => {
-        console.log('clear', this.state.searchTerm);
         this.setState({ searchTerm: '' });
     }
 
     render() {
-        console.log('render', this.state)
         const { searchTerm, suggestions } = this.state;
 
         const inputProps = {
@@ -71,7 +69,7 @@ export default class StationSearch extends Component {
         return (
 
             <div>
-                <h5>Hae aseman nimellä</h5>
+                <h6 style={{ fontWeight: 700, marginBottom: '5px' }}>Hae aseman nimellä</h6>
                 <Row>
                     <Autosuggest
                         suggestions={suggestions}
@@ -85,19 +83,19 @@ export default class StationSearch extends Component {
                     <Button className='removeSearchTerm'
                         style={{
                             position: 'absolute',
-                            height: '45px',
-                            marginLeft: '343px',
+                            height: '35px',
+                            marginLeft: '379px',
                             backgroundColor: 'transparent',
                             borderColor: 'transparent',
                             color: 'black',
                             fontSize: '20px',
-                            paddingLeft: '20px',
-                            paddingRight: '20px',
+                            paddingLeft: '10px',
+                            paddingRight: '10px',
+                            paddingTop: '3px',
                             border: 'none',
                             transition: 'none'
                         }}
                         onClick={this.clearInput}>{x}</Button>
-
                 </Row>
                 <br /> <br />
             </div >
@@ -111,17 +109,19 @@ const theme = {
     },
     input: {
         width: 400,
-        padding: '10px 20px',
+        height: '36px',
+        padding: '10px',
         fontFamily: 'Helvetica, sans-serif',
         fontWeight: 300,
-        fontSize: 16,
-        border: '1px solid #aaa',
+        fontSize: 14,
+        border: '1px solid #dee2e6',
         borderTopLeftRadius: 7,
         borderTopRightRadius: 7,
         borderBottomLeftRadius: 7,
         borderBottomRightRadius: 7,
-        backgroundColor: '#E0F8E0',
-        marginRight: '-20px'
+        backgroundColor: '#eef2ea',
+        marginRight: '-20px',
+        marginLeft: '16px'
     },
     inputFocused: {
         outline: 'none'
@@ -136,7 +136,8 @@ const theme = {
     suggestionsContainerOpen: {
         display: 'block',
         position: 'absolute',
-        top: 51,
+        marginLeft: '16px',
+        top: 35,
         width: 400,
         border: '1px solid #aaa',
         backgroundColor: '#fff',
