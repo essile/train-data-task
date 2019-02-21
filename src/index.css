@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  font-weight: 50;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -15,6 +16,8 @@ code {
 
 .table thead th {
   border-top-color: transparent;
+  color: gray;
+  font-weight: 400;
 }
 
 .changedSchedule {
@@ -34,11 +37,34 @@ code {
 }
 
 .nonActiveTab {
-  color: green;
+  color: #58a618;
   font-weight: 500;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.activeTab {
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 .navBar {
     -webkit-box-shadow: 0 8px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.2);
     box-shadow: 0 8px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.2);
 }
+
+.nav-tabs {
+  height: 37px;
+}
+
+.nav-link {
+  height: 37px;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+  color: #495057;
+  background-color: #fff;
+  border-color: #dee2e6 #dee2e6 #fff;
+  height: 37px;
+}
+

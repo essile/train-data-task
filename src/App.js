@@ -113,7 +113,7 @@ class App extends Component {
               className={classnames({ active: this.state.activeTab === '1' })}
               onClick={() => { this.toggle('1'); }}
             >
-              <span className={this.state.activeTab === '1' ? '' : 'nonActiveTab'}>Saapuvat</span>
+              <span className={this.state.activeTab === '1' ? 'activeTab' : 'nonActiveTab'}>Saapuvat</span>
             </NavLink>
           </NavItem>
           <NavItem>
@@ -121,7 +121,7 @@ class App extends Component {
               className={classnames({ active: this.state.activeTab === '2' })}
               onClick={() => { this.toggle('2'); }}
             >
-              <span className={this.state.activeTab === '2' ? '' : 'nonActiveTab'}>Lähtevät</span>
+              <span className={this.state.activeTab === '2' ? 'activeTab' : 'nonActiveTab'}>Lähtevät</span>
             </NavLink>
           </NavItem>
         </Nav>
